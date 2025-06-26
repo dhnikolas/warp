@@ -35,7 +35,7 @@ jobs:
         id: buildos
         run: |
           mkdir osx
-          GO111MODULE=on CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-w -s -X main.AppVersion=${{ steps.vars.outputs.tag }}" -o ./osx/${{ steps.vars.outputs.project_name }} cmd/*
+          GO111MODULE=on CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags="-w -s -X main.AppVersion=${{ steps.vars.outputs.tag }}" -o ./osx/${{ steps.vars.outputs.project_name }} cmd/*
           tar -czvf app-osx.tar.gz -C osx/ .
           SHASUM=$(sha256sum app-osx.tar.gz | head -c 64)
           echo ::set-output name=shasum::${SHASUM}
